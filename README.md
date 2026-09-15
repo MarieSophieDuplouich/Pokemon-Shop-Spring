@@ -1,3 +1,9 @@
+# Marie-Sophie Duplouich Avant-propos/Preface
+
+Projet Java Spring Boot Pokemon E-commerce pour découvrir Java. Ce projet initial appartient à https://github.com/wontaekoh/Pokemon-Shop-Spring .  Je voudrais améliorer le front-end et me familiariser avec la POO de Java.
+
+A Pokémon e-commerce project using Java Spring Boot, created to learn Java. The original project belongs to https://github.com/wontaekoh/Pokemon-Shop-Spring . I aim to improve the front-end and familiarize myself with Java OOP.
+
 # Pokemon-Shop-Spring
 This project is a RESTful Java web service version of [Pokemon e-commerce website](https://github.com/wontaekoh/Pokemon-Shop)
 including user account CRUD operation testing using JUnit.
