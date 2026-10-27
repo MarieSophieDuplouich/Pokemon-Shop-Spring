@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- À COMPLÉTER : remplacez VOTRE-DOMAINE.example par l'adresse publique réelle du site -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://VOTRE-DOMAINE.example/</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.example/product-list</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.example/register</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.example/mentions-legales</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.example/confidentialite</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.example/cgu</loc></url>
+  <url><loc>https://VOTRE-DOMAINE.example/cookies</loc></url>
+</urlset>

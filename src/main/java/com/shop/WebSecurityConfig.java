@@ -3,8 +3,10 @@ package com.shop;
 import javax.sql.DataSource;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -19,6 +21,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
     @Autowired
     private DataSource dataSource;
+
+    // true uniquement en production (profil "prod") : redirige tout le trafic HTTP vers HTTPS
+    @Value("${site.force-https:false}")
+    private boolean forceHttps;
      
     @Bean
     public UserDetailsService userDetailsService() {
@@ -46,8 +52,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
  
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        if (forceHttps) {
+            http.requiresChannel().anyRequest().requiresSecure();
+        }
         http.authorizeRequests()
-            .antMatchers("/list").authenticated()
+            .antMatchers("/list", "/edit/**", "/delete/**", "/edit-product/**", "/delete-product/**").hasRole("ADMIN")
+            .antMatchers(HttpMethod.POST, "/product-list").hasRole("ADMIN")
             .anyRequest().permitAll()
             .and()
             .formLogin()

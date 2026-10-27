@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
+<head th:replace="fragments :: head('Politique cookies – ROCKET (site fictif)', 'Liste complète des cookies et traceurs du site fictif ROCKET, et comment accepter, refuser ou modifier votre choix.')"></head>
+<body>
+	<div th:replace="fragments :: top"></div>
+	<div th:insert="/header :: header"></div>
+
+	<main id="main">
+		<section class="section">
+			<div class="container legal">
+				<h1>Politique cookies</h1>
+				<p>Dernière mise à jour : 27 octobre 2026.</p>
+				<p><strong>Ce site est fictif.</strong> ROCKET est un projet d'apprentissage de Java et de Spring Boot réalisé pour un portfolio. Il ne vend rien, n'encaisse aucun paiement et ne livre aucun produit.</p>
+				<p>Le site n'utilise <strong>aucun cookie de mesure d'audience, de publicité ou de réseau social</strong>. Seuls deux traceurs techniques existent, tous deux exemptés de consentement.</p>
+			</div>
+		</section>
+
+		<section class="section section-alt">
+			<div class="container legal">
+				<h2 id="liste">Liste des traceurs</h2>
+				<table>
+					<caption class="sr-only">Cookies et traceurs du site</caption>
+					<thead><tr><th scope="col">Nom</th><th scope="col">Émetteur</th><th scope="col">Finalité</th><th scope="col">Durée</th><th scope="col">Consentement</th></tr></thead>
+					<tbody>
+						<tr><th scope="row">JSESSIONID</th><td>Ce site (cookie)</td><td>Maintenir votre connexion et sécuriser les formulaires (jeton CSRF). Déposé notamment à l'affichage d'un formulaire ou à la connexion.</td><td>Cookie de session : supprimé à la fermeture du navigateur ; session expirée après 30 minutes d'inactivité (valeur par défaut de Tomcat).</td><td>Non requis (strictement nécessaire)</td></tr>
+						<tr><th scope="row">rocket-consent</th><td>Ce site (stockage local du navigateur, pas un cookie)</td><td>Mémoriser votre choix du bandeau (accepté ou refusé) et sa date.</td><td>6 mois</td><td>Non requis (nécessaire pour retenir votre choix)</td></tr>
+					</tbody>
+				</table>
+				<h2 id="tiers">Ressource tierce (pas un cookie du site)</h2>
+				<table>
+					<caption class="sr-only">Ressource tierce</caption>
+					<thead><tr><th scope="col">Service</th><th scope="col">Rôle</th><th scope="col">Données transmises</th></tr></thead>
+					<tbody>
+						<tr><th scope="row">cdnjs.cloudflare.com (Cloudflare, Inc.)</th><td>Fournit les icônes Font Awesome</td><td>Adresse IP et informations techniques du navigateur. Le site n'y dépose aucun cookie ; l'éditeur ne contrôle pas les pratiques de ce tiers.</td></tr>
+					</tbody>
+				</table>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container legal">
+				<h2 id="aucun">Ce que le site n'utilise pas</h2>
+				<p>Pas d'outil de mesure d'audience, pas de publicité, pas de bouton ou de widget de réseau social, pas de vidéo intégrée, pas d'empreinte de navigateur.</p>
+			</div>
+		</section>
+
+		<section class="section section-alt">
+			<div class="container legal">
+				<h2 id="choix">Accepter, refuser, modifier</h2>
+				<p>Le bandeau propose « Tout refuser » et « Tout accepter » au même niveau, avec le même style. Ne rien faire ne vaut pas consentement. Votre choix est conservé 6 mois puis redemandé. Comme aucun traceur optionnel n'existe aujourd'hui, ce choix ne change rien au fonctionnement du site.</p>
+				<p><button type="button" class="btn btn-primary" data-consent-open>Gérer mes cookies</button></p>
+				<p>Vous pouvez aussi supprimer les cookies depuis les réglages de votre navigateur.</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container legal">
+				<h2 id="maj">Évolutions</h2>
+				<p>Tout nouveau traceur sera ajouté à ce tableau avant d'être activé, et ne sera déposé qu'après votre accord s'il n'est pas strictement nécessaire.</p>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>

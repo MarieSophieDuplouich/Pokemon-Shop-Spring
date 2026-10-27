@@ -1,51 +1,39 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROCKET</title>
-
-<!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-
-<!-- font awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
-<!-- Custom CSS file -->
-<link rel="stylesheet" th:href="@{/styles/cssandjs/style.css}">
-
-</head>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:replace="fragments :: head('ROCKET – Fictional Pokémon shop (Java learning project)', 'ROCKET is a fictional Pokémon shop built with Java and Spring Boot to learn Java. Nothing is actually sold.')"></head>
 <body>
+	<div th:replace="fragments :: top"></div>
+
 	<!-- Insert header template -->
 	<div th:insert="/header :: header"></div>
 
-	<!-- Main Section -->
-	<!-- main -->
-	<main id="main-site">
-		<div class="container pb-5">
-			<!-- About Rocket -->
-			<div class="jumbotron" style="background: none;">
-				<h1 class="text-warning">ROCKET</h1>
-				<p class="text-light">
-					A villainous team in pursuit of evil and the exploitation of Pokémon.<br> We are based in the Ottawa-Gatineau region, with a small outpost in the Bate Island.
-				</p>
+	<!-- Main -->
+	<main id="main">
+		<!-- About Rocket (fond blanc) -->
+		<section class="section">
+			<div class="container">
+				<div class="jumbotron">
+					<h1 class="hero-title">ROCKET</h1>
+					<p>A villainous team in pursuit of evil and the exploitation of Pokémon.<br> We are based in the Ottawa-Gatineau region, with a small outpost in the Bate Island.</p>
+					<p lang="fr">Boutique fictive : ce projet sert à apprendre Java. Aucun Pokémon n'est réellement vendu.</p>
+				</div>
 			</div>
+		</section>
 
-			<!-- Featured products -->
-			<h3 class="text-info border-bottom py-3">This week's special deals!</h3>
-			<div class="grid">
+		<!-- Featured products (fond #f5f5f7) -->
+		<section class="section section-alt" aria-labelledby="deals-title">
+			<div class="container">
+				<h2 id="deals-title">This week's special deals!</h2>
+				<div class="grid">
 				<div class="grid-item">
 					<div class="item p-2">
 						<div class="product font-rale">
-							<a th:href="@{/}"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/54.png" alt="Psyduck" class="img-fluid"></a>
-							<div class="text-center pt-2">
-								<h6 class="text-white-50">Psyduck</h6>
-								<div class="rating text-warning font-size-12">
-									<span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i
-										class="fas fa-star"></i></span>
-									<div class="price py-2">
-										<span class="text-light font-size-16">$6,000</span> <span class="text-danger"><strike>$8,000</strike></span>
-									</div>
+							<a th:href="@{/product-list}"><img th:src="@{/images/Psyduck.png}" alt="Psyduck, Pokémon illustration" width="240" height="421" loading="lazy" class="img-fluid"></a>
+							<div class="pt-2">
+								<h3>Psyduck</h3>
+								<div class="rating font-size-12" role="img" aria-label="Rated 5 out of 5 stars"><i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i></div>
+								<div class="price py-2">
+									<span class="font-size-16"><span class="sr-only">Price: </span>$6,000</span> <del><span class="sr-only">Regular price: </span>$8,000</del>
 								</div>
 							</div>
 						</div>
@@ -55,15 +43,12 @@
 				<div class="grid-item">
 					<div class="item p-2">
 						<div class="product font-rale">
-							<a th:href="@{/}"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/55.png" alt="Golduck" class="img-fluid"></a>
-							<div class="text-center pt-2">
-								<h6 class="text-white-50">Golduck</h6>
-								<div class="rating text-warning font-size-12">
-									<span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i
-										class="far fa-star"></i></span>
-									<div class="price py-2">
-										<span class="text-light font-size-16">$9,000</span> <span class="text-danger"><strike>$13,000</strike></span>
-									</div>
+							<a th:href="@{/product-list}"><img th:src="@{/images/Golduck.png}" alt="Golduck, Pokémon illustration" width="240" height="421" loading="lazy" class="img-fluid"></a>
+							<div class="pt-2">
+								<h3>Golduck</h3>
+								<div class="rating font-size-12" role="img" aria-label="Rated 4 out of 5 stars"><i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="far fa-star" aria-hidden="true"></i></div>
+								<div class="price py-2">
+									<span class="font-size-16"><span class="sr-only">Price: </span>$9,000</span> <del><span class="sr-only">Regular price: </span>$13,000</del>
 								</div>
 							</div>
 						</div>
@@ -73,15 +58,12 @@
 				<div class="grid-item">
 					<div class="item p-2">
 						<div class="product font-rale">
-							<a th:href="@{/}"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/98.png" alt="Krabby" class="img-fluid"></a>
-							<div class="text-center pt-2">
-								<h6 class="text-white-50">Krabby</h6>
-								<div class="rating text-warning font-size-12">
-									<span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i
-										class="fas fa-star-half-alt"></i></span>
-									<div class="price py-2">
-										<span class="text-light font-size-16">$4,500</span> <span class="text-danger"><strike>$6,000</strike></span>
-									</div>
+							<a th:href="@{/product-list}"><img th:src="@{/images/Krabby.png}" alt="Krabby, Pokémon illustration" width="240" height="421" loading="lazy" class="img-fluid"></a>
+							<div class="pt-2">
+								<h3>Krabby</h3>
+								<div class="rating font-size-12" role="img" aria-label="Rated 4.5 out of 5 stars"><i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star-half-alt" aria-hidden="true"></i></div>
+								<div class="price py-2">
+									<span class="font-size-16"><span class="sr-only">Price: </span>$4,500</span> <del><span class="sr-only">Regular price: </span>$6,000</del>
 								</div>
 							</div>
 						</div>
@@ -91,83 +73,84 @@
 				<div class="grid-item">
 					<div class="item p-2">
 						<div class="product font-rale">
-							<a th:href="@{/}"><img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/99.png" alt="Kingler" class="img-fluid"></a>
-							<div class="text-center pt-2">
-								<h6 class="text-white-50">Kingler</h6>
-								<div class="rating text-warning font-size-12">
-									<span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i class="fas fa-star"></i></span> <span><i
-										class="fas fa-star-half-alt"></i></span>
-									<div class="price py-2">
-										<span class="text-light font-size-16">$5,000</span> <span class="text-danger"><strike>$8,000</strike></span>
-									</div>
+							<a th:href="@{/product-list}"><img th:src="@{/images/Kingler.png}" alt="Kingler, Pokémon illustration" width="240" height="421" loading="lazy" class="img-fluid"></a>
+							<div class="pt-2">
+								<h3>Kingler</h3>
+								<div class="rating font-size-12" role="img" aria-label="Rated 4.5 out of 5 stars"><i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star" aria-hidden="true"></i> <i class="fas fa-star-half-alt" aria-hidden="true"></i></div>
+								<div class="price py-2">
+									<span class="font-size-16"><span class="sr-only">Price: </span>$5,000</span> <del><span class="sr-only">Regular price: </span>$8,000</del>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+			</div>
+		</section>
 
-			<!-- Pokemons by types -->
-			<h3 class="text-info border-bottom py-3">Types of Pokemons</h3>
-			<div class="row">
+		<!-- Pokemons by types (fond blanc) -->
+		<section class="section" aria-labelledby="types-title">
+			<div class="container">
+				<h2 id="types-title">Types of Pokemons</h2>
+				<div class="row">
 				<div class="col-lg-4 col-md-6 col-sm-12">
-					<div class="card border-0" style="width: 18rem; background: none;">
-						<a th:href="@{/}"> <img src="https://i.pinimg.com/564x/ce/40/ff/ce40ffe65d9bb1dab02e6c4fd3158f9f.jpg" class="card-img" alt="...">
-						</a>
+					<div class="card">
+						<a th:href="@{/product-list}"><img th:src="@{/images/Charizard.png}" class="card-img" alt="Charizard, a fire-type Pokémon" width="240" height="421" loading="lazy"></a>
 						<div class="card-body">
-							<a th:href="@{/}" class="btn btn-primary">Fire Pokemons!</a>
+							<a th:href="@{/product-list}" class="btn btn-primary">Fire Pokemons!</a>
 						</div>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6 col-sm-12">
-					<div class="card border-0" style="width: 18rem; background: none;">
-						<a th:href="@{/}"> <img src="images/pikachu.png" class="card-img" alt="...">
-						</a>
+					<div class="card">
+						<a th:href="@{/product-list}"><img th:src="@{/images/Rhydon.png}" class="card-img" alt="Rhydon, a ground-type Pokémon" width="240" height="421" loading="lazy"></a>
 						<div class="card-body">
-							<a th:href="@{/}" class="btn btn-primary">Ground Pokemons!</a>
+							<a th:href="@{/product-list}" class="btn btn-primary">Ground Pokemons!</a>
 						</div>
 					</div>
 				</div>
+
 				<div class="col-lg-4 col-md-6 col-sm-12">
-					<div class="card border-0" style="width: 18rem; background: none;">
-						<a th:href="@{/}"> <img src="https://i.pinimg.com/236x/09/1a/b8/091ab846fb11a480f3355c9a072df550.jpg" class="card-img" alt="...">
-						</a>
+					<div class="card">
+						<a th:href="@{/product-list}"><img th:src="@{/images/Pikachu.png}" class="card-img" alt="Pikachu, an electric-type Pokémon" width="240" height="421" loading="lazy"></a>
 						<div class="card-body">
-							<a th:href="@{/}" class="btn btn-primary">Electric Pokemons!</a>
+							<a th:href="@{/product-list}" class="btn btn-primary">Electric Pokemons!</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="card">
+						<a th:href="@{/product-list}"><img th:src="@{/images/Gengar.png}" class="card-img" alt="Gengar, a ghost-type Pokémon" width="240" height="421" loading="lazy"></a>
+						<div class="card-body">
+							<a th:href="@{/product-list}" class="btn btn-primary">Ghost Pokemons!</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="card">
+						<a th:href="@{/product-list}"><img th:src="@{/images/Machamp.png}" class="card-img" alt="Machamp, a fighting-type Pokémon" width="240" height="421" loading="lazy"></a>
+						<div class="card-body">
+							<a th:href="@{/product-list}" class="btn btn-primary">Fighting Pokemons!</a>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-4 col-md-6 col-sm-12">
+					<div class="card">
+						<a th:href="@{/product-list}"><img th:src="@{/images/Gyarados.png}" class="card-img" alt="Gyarados, a water-type Pokémon" width="240" height="421" loading="lazy"></a>
+						<div class="card-body">
+							<a th:href="@{/product-list}" class="btn btn-primary">Water Pokemons!</a>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="row">
-				<div class="col-lg-4 col-md-6 col-sm-12">
-					<div class="card border-0" style="width: 18rem; background: none;">
-						<a th:href="@{/}"> <img src="https://i.pinimg.com/236x/7d/b1/e9/7db1e990dd24164c610071e58fe4555c.jpg" class="card-img" alt="...">
-						</a>
-						<div class="card-body">
-							<a th:href="@{/}" class="btn btn-primary">Ghost Pokemons!</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12">
-					<div class="card border-0" style="width: 18rem; background: none;">
-						<a th:href="@{/}"> <img src="https://i.pinimg.com/564x/f8/64/da/f864da7524014824ce65710a69aba1cb.jpg" class="card-img" alt="...">
-						</a>
-						<div class="card-body">
-							<a th:href="@{/}" class="btn btn-primary">Fighting Pokemons!</a>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-6 col-sm-12">
-					<div class="card border-0" style="width: 18rem; background: none;">
-						<a th:href="@{/}"> <img src="https://i.pinimg.com/564x/7f/5e/c2/7f5ec26dd066e36f50d79c2312d3f2a5.jpg" class="card-img" alt="...">
-						</a>
-						<div class="card-body">
-							<a th:href="@{/}" class="btn btn-primary">Water Pokemons!</a>
-						</div>
-					</div>
-				</div>
 			</div>
-		</div>
+		</section>
 	</main>
+
+	<div th:replace="fragments :: footer"></div>
 </body>
 </html>

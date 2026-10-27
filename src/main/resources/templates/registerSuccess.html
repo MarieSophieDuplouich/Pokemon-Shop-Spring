@@ -1,34 +1,19 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROCKET</title>
-
-<!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-
-<!-- font awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
-<!-- Custom CSS file -->
-<link rel="stylesheet" th:href="@{/styles/cssandjs/style.css}">
-
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="fragments :: head('Sign up complete – ROCKET (fictional shop)', 'Your demo account on the fictional ROCKET shop has been created.')"></head>
 <body>
-	<!-- Insert header template -->
+	<div th:replace="fragments :: top"></div>
 	<div th:insert="/header :: header"></div>
 
-	<!-- Main Section -->
-	<div class="container text-center font-baloo py-5" style="color: whitesmoke">
-		<br>
-		<br>
-		<h2>You have signed up successfully!</h2>
-		<div class="py-3">
-			<h4>
-				Click <a th:href="@{/login}" class="text-warning">here</a> to Login
-			</h4>
-		</div>
-	</div>
+	<main id="main">
+		<section class="section" aria-labelledby="ok-title">
+			<div class="container">
+				<h1 id="ok-title">You have signed up successfully!</h1>
+				<p>Click <a th:href="@{/login}">here</a> to Login.</p>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="fragments :: footer"></div>
 </body>
 </html>

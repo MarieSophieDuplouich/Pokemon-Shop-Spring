@@ -50,3 +50,9 @@ h2 { font-size: var(--fs-title); }
   height: 550px;
   border-radius: var(--radius-card);
 }
+@media (max-width: 576px) {
+  .main { padding: 1rem; }
+  .grid { grid-template-columns: 1fr; }
+  #duck { max-width: 100%; height: auto; }
+  h1 { font-size: 56px; }
+}

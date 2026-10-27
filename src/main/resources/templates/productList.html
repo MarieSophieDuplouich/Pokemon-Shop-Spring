@@ -1,118 +1,95 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROCKET</title>
-
-<!-- Bootstrap -->
-<!--   <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" /> -->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-	crossorigin="anonymous">
-
-
-<!-- font awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
-<!-- Custom CSS file -->
-<link rel="stylesheet" th:href="@{/styles/cssandjs/style.css}">
-
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="fragments :: head('Pokémon catalogue – ROCKET (fictional shop)', 'Catalogue of the fictional ROCKET shop: Pokémon listed for a Java learning project. Nothing is actually sold.')"></head>
 <body>
-	<!-- Insert header template -->
+	<div th:replace="fragments :: top"></div>
 	<div th:insert="/header :: header"></div>
 
-	<!-- Main Section -->
-	<main>
-		<!-- Upload form -->
-		<section sec:authorize="isAuthenticated()">
-			<div class="wrapper">
-				<div class="container">
-					<p class="font-baloo p-2 mt-5 border-bottom font-size-22">Upload new Pokemon</p>
+	<main id="main">
+		<!-- Upload form (connecté uniquement) -->
+		<section class="section section-alt" sec:authorize="hasRole('ADMIN')" aria-labelledby="upload-title">
+			<div class="container">
+				<h2 id="upload-title">Upload new Pokemon</h2>
 
-					<form th:action="@{/product-list}" th:object="${product}" method="POST" enctype="multipart/form-data" style="color: whitesmoke">
-						<div class="form-row align-items-center m-auto py-1 form-group">
-							<div class="col-sm-6">
-								<input type="text" th:field="*{title}" class="form-control mb-2" id="inlineFormInput" placeholder="Name">
-							</div>
-							<div class="col-sm-6">
-								<input type="text" th:field="*{type}" class="form-control mb-2" id="inlineFormInput" placeholder="Type">
-							</div>
+				<form th:action="@{/product-list}" th:object="${product}" method="POST" enctype="multipart/form-data">
+					<div class="form-row">
+						<div class="col-sm-6 form-group">
+							<label for="title" class="sr-only">Name</label>
+							<input type="text" th:field="*{title}" class="form-control" placeholder="Name" required maxlength="100">
 						</div>
-						<div class="form-row align-items-center m-auto py-1 form-group">
-							<div class="col-sm-4">
-								<input type="text" th:field="*{MSRP}" class="form-control mb-2" id="inlineFormInput" placeholder="MSRP">
-							</div>
-							<div class="col-sm-4">
-								<input type="text" th:field="*{price}" class="form-control mb-2" id="inlineFormInput" placeholder="Sale Price">
-							</div>
-							<div class="col-sm-4">
-								<input type="text" th:field="*{rating}" class="form-control mb-2" id="inlineFormInput" placeholder="Rate">
-							</div>
+						<div class="col-sm-6 form-group">
+							<label for="type" class="sr-only">Type</label>
+							<input type="text" th:field="*{type}" class="form-control" placeholder="Type" required maxlength="30">
 						</div>
-						<div class="form-row align-items-center m-auto pt-1 form-group">
-							<div class="col-sm-12">
-								<textarea type="text" th:field="*{pkmDesc}" class="form-control" rows="5" placeholder="Description"></textarea>
-							</div>
+					</div>
+					<div class="form-row">
+						<div class="col-sm-4 form-group">
+							<label for="MSRP" class="sr-only">MSRP</label>
+							<input type="number" th:field="*{MSRP}" class="form-control" placeholder="MSRP" min="0" step="0.01">
 						</div>
-						<br>
-						<div class="form-row align-items-center m-auto form-group pb-1">
-							<div class="col-sm-11">
-								<input type="file" class="form-control-file pointer">
-							</div>
-							<div class="col-sm-1">
-								<button type="submit" class="btn btn-sm btn-outline-warning font-weight-bold">UPLOAD</button>
-							</div>
+						<div class="col-sm-4 form-group">
+							<label for="price" class="sr-only">Sale price</label>
+							<input type="number" th:field="*{price}" class="form-control" placeholder="Sale Price" required min="0" step="0.01">
 						</div>
-					</form>
-					<p class="font-baloo p-2 border-bottom font-size-20"></p>
-					<br>
-					<br>
-				</div>
+						<div class="col-sm-4 form-group">
+							<label for="rating" class="sr-only">Rating from 0 to 5</label>
+							<input type="number" th:field="*{rating}" class="form-control" placeholder="Rate (0-5)" min="0" max="5" step="0.1">
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="pkmDesc" class="sr-only">Description</label>
+						<textarea th:field="*{pkmDesc}" class="form-control" rows="5" placeholder="Description" maxlength="5000"></textarea>
+					</div>
+					<div class="form-row align-items-center">
+						<div class="col-sm-9 form-group">
+							<label for="imageFile" class="sr-only">Image</label>
+							<input type="file" id="imageFile" class="form-control-file pointer" accept="image/png">
+						</div>
+						<div class="col-sm-3 form-group">
+							<button type="submit" class="btn btn-primary">UPLOAD</button>
+						</div>
+					</div>
+				</form>
+			</div>
 		</section>
 
+		<!-- Display all the products in the inventory (fond blanc) -->
+		<section class="section" aria-labelledby="inventory-title">
+			<div class="container">
+				<h2 id="inventory-title">Total [[${prodList.size()}]] Pokemons in the inventory</h2>
 
-		<!-- Display all the products in the inventory -->
-		<section class="m-5">
-			<div class="wrapper">
-				<div class="container">
-					<!-- Display total items in the inventory -->
-					<p class="font-baloo p-2 border-bottom font-size-22">
-						Total <span class="text-white-50 font-weight-bold">[[${prodList.size()}]]</span> Pokemons in the inventory
-					</p>
-
-					<div class="searched-products">
-
-						<!-- Display each product -->
-						<div class="grid-item border-bottom" th:each="prod: ${prodList}">
-							<div class="item p-2">
-								<div class="product font-baloo">
-									<a th:href="@{/info/{id}(id=${prod.id})}"> <img th:src="@{/images/{image}(image=${prod.imgAddr})}" class="img-fluid"></a>
-									<div class="text-center pt-2">
-										<h5 class="text-white-50">[[${prod.title}]]</h5>
-										<div class="rating text-warning font-size-12">
-											<span>[[${prod.rating}]]/5.0</span>
-											<div class="price py-1">
-												<span class="text-light font-size-16">$[[${prod.price}]]</span> <span class="text-danger"><strike>$[[${prod.MSRP}]]</strike></span>
-											</div>
-											<p class="font-size-14">Type: [[${prod.type}]]</p>
-											<div sec:authorize="isAnonymous()">
-												<button type="submit" class="btn btn-warning font-size-14">Add to Cart</button>
-											</div>
-											<div sec:authorize="isAuthenticated()">
-												<a th:href="@{/edit-product/{id}(id=${prod.id})}"><i class="far fa-edit text-warning font-size-18 hover"></i></a> &emsp; <a th:href="@{/delete-product/{id}(id=${prod.id})}"><i
-													class="far fa-trash-alt text-danger font-size-18 hover"></i></a>
-											</div>
+				<div class="searched-products">
+					<div class="grid-item" th:each="prod: ${prodList}">
+						<div class="item p-2">
+							<div class="product font-baloo">
+								<a th:href="@{/info/{id}(id=${prod.id})}"><img th:src="@{/images/{image}(image=${prod.imgAddr})}" th:alt="${prod.title} + ', Pokémon illustration'" width="240" height="421" loading="lazy" class="img-fluid"></a>
+								<div class="pt-2">
+									<h3>[[${prod.title}]]</h3>
+									<div class="rating font-size-12">
+										<span><span class="sr-only">Rating: </span>[[${prod.rating}]]/5.0</span>
+										<div class="price py-1">
+											<span class="font-size-16"><span class="sr-only">Price: </span>$[[${prod.price}]]</span> <del><span class="sr-only">Regular price: </span>$[[${prod.MSRP}]]</del>
+										</div>
+										<p class="font-size-14">Type: [[${prod.type}]]</p>
+										<div sec:authorize="!hasRole('ADMIN')">
+											<button type="button" class="btn btn-primary font-size-14" th:attr="aria-label='Add ' + ${prod.title} + ' to cart (demo, nothing is sold)'">Add to Cart</button>
+										</div>
+										<div sec:authorize="hasRole('ADMIN')">
+											<a th:href="@{/edit-product/{id}(id=${prod.id})}" th:attr="aria-label='Edit ' + ${prod.title}"><i class="far fa-edit font-size-18 hover" aria-hidden="true"></i></a> &emsp;
+											<form th:action="@{/delete-product/{id}(id=${prod.id})}" method="post" class="d-inline">
+												<button type="submit" class="btn-icon" th:attr="aria-label='Delete ' + ${prod.title}"><i class="far fa-trash-alt font-size-18 hover" aria-hidden="true"></i></button>
+											</form>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
 		</section>
 	</main>
+
+	<div th:replace="fragments :: footer"></div>
 </body>
 </html>

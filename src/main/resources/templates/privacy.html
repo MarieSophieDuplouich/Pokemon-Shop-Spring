@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
+<head th:replace="fragments :: head('Politique de confidentialité – ROCKET (site fictif)', 'Politique de confidentialité du site fictif ROCKET : quelles données sont collectées à l’inscription, pourquoi, et comment exercer vos droits.')"></head>
+<body>
+	<div th:replace="fragments :: top"></div>
+	<div th:insert="/header :: header"></div>
+
+	<main id="main">
+		<section class="section">
+			<div class="container legal">
+				<h1>Politique de confidentialité</h1>
+				<p>Dernière mise à jour : 27 octobre 2026.</p>
+				<p><strong>Ce site est fictif.</strong> ROCKET est un projet d'apprentissage de Java et de Spring Boot réalisé pour un portfolio. Il ne vend rien, n'encaisse aucun paiement et ne livre aucun produit.</p>
+				<p>Le site ne collecte que ce qui est nécessaire à la démonstration d'un compte utilisateur. Il n'y a ni publicité, ni mesure d'audience, ni profilage, ni revente de données.</p>
+				<p><strong>Merci de ne saisir que des données inventées.</strong></p>
+			</div>
+		</section>
+
+		<section class="section section-alt">
+			<div class="container legal">
+				<h2 id="responsable">Responsable du traitement</h2>
+				<p>Marie-Sophie Duplouich, éditrice du site (voir les <a th:href="@{/mentions-legales}">mentions légales</a>). Contact : <span class="todo">[À COMPLÉTER : adresse e-mail de contact]</span></p>
+				<h2 id="donnees">Données collectées</h2>
+				<table>
+					<caption class="sr-only">Données collectées</caption>
+					<thead><tr><th scope="col">Donnée</th><th scope="col">Quand</th><th scope="col">Pourquoi</th></tr></thead>
+					<tbody>
+						<tr><th scope="row">Adresse e-mail</th><td>Inscription</td><td>Identifiant de connexion</td></tr>
+						<tr><th scope="row">Mot de passe</th><td>Inscription</td><td>Authentification. Il est enregistré sous forme hachée (BCrypt), jamais en clair.</td></tr>
+						<tr><th scope="row">Prénom et nom</th><td>Inscription</td><td>Afficher « Hey, prénom » une fois connecté et gérer le compte de démonstration</td></tr>
+					</tbody>
+				</table>
+				<p>Base légale : votre consentement (article 6, 1, a du RGPD), donné en remplissant volontairement le formulaire d'inscription.</p>
+				<p>Aucune autre donnée n'est demandée. Le formulaire de recherche n'enregistre rien.</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container legal">
+				<h2 id="conservation">Conservation, destinataires et ressources tierces</h2>
+				<p>Les données sont stockées dans une base MySQL. Dans la configuration actuelle du projet, cette base est recréée à chaque démarrage de l'application, ce qui efface les comptes. Vous pouvez aussi demander la suppression de votre compte à tout moment.</p>
+				<p>Les données ne sont communiquées à aucun partenaire commercial. Seul l'hébergeur (voir les mentions légales) intervient techniquement. Le compte administrateur du site peut consulter la liste des comptes (nom et e-mail).</p>
+				<p>Pour afficher les icônes, votre navigateur télécharge une feuille de style depuis <strong>cdnjs.cloudflare.com</strong> (Cloudflare, Inc.). Cette requête transmet votre adresse IP et les informations techniques habituelles de votre navigateur à ce prestataire, qui peut se trouver hors de l'Union européenne. Le détail figure dans la <a th:href="@{/cookies}">politique cookies</a>.</p>
+			</div>
+		</section>
+
+		<section class="section section-alt">
+			<div class="container legal">
+				<h2 id="droits">Vos droits</h2>
+				<p>Vous pouvez demander l'accès à vos données, leur rectification, leur effacement, la limitation du traitement, vous y opposer, retirer votre consentement et demander la portabilité de vos données. Écrivez à <span class="todo">[À COMPLÉTER : adresse e-mail de contact]</span>.</p>
+				<p>Vous pouvez aussi introduire une réclamation auprès de la CNIL : <a href="https://www.cnil.fr">www.cnil.fr</a>.</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container legal">
+				<h2 id="securite">Sécurité : ce que l'on peut et ne peut pas garantir</h2>
+				<p>Les mots de passe sont hachés et les formulaires sont protégés contre la falsification de requêtes (protection CSRF de Spring Security). Il s'agit toutefois d'un projet de démonstration : aucune garantie de sécurité de niveau professionnel n'est donnée, d'où la consigne de n'utiliser que des données fictives et un mot de passe que vous n'utilisez nulle part ailleurs.</p>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>

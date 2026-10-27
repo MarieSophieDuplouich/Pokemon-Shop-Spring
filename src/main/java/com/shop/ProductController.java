@@ -63,7 +63,7 @@ public class ProductController {
 	}
 	
 	// Delete Product	
-	@GetMapping("/delete-product/{id}")
+	@PostMapping("/delete-product/{id}")
 	public String deleteProd(@PathVariable("id") int id, Model model) {
 		Products products = prodrepo.findById(id)
 	    		.orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + id));

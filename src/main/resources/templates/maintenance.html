@@ -1,30 +1,28 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ROCKET</title>
-
-  <link rel="stylesheet" th:href="@{/styles/cssandjs/maintenance.css}>
-  <!-- font awesome icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
+  <title>Not available in this demo – ROCKET (fictional shop)</title>
+  <meta name="description" content="This feature does not exist in ROCKET, a fictional shop built to learn Java.">
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32.png}">
+  <link rel="stylesheet" th:href="@{/styles/cssandjs/maintenance.css}">
 </head>
 <body>
-    <div class="main grid">
-      <!-- duck image -->
-      <img id="duck" src="https://i.pinimg.com/564x/67/e0/82/67e0822bebc5552415e94ed1eb1ca977.jpg" alt="">
-      
-      <!-- Maintenance message -->
-      <div>
-        <img class="maintenance" src="https://cdn.iconscout.com/icon/free/png-256/maintenance-services-wrench-setting-support-tools-5-6242.png">
-        <h2>Sorry, we're currently down for maintenance.</h2>
-        <h1>We'll be back shortly.</h1>
-        <a th:href="@{/}">
-          <img class="brand" th:src="@{/images/clipart1530219.png}" >
-        </a> 
-      </div>
+  <main id="main" class="main grid">
+    <!-- Illustration -->
+    <img id="duck" th:src="@{/images/Psyduck.png}" alt="Psyduck, Pokémon illustration" width="310" height="550">
+
+    <div>
+      <h1>Coming soon.</h1>
+      <h2>This feature does not exist in this demo site.</h2>
+      <p lang="fr">ROCKET est un site fictif créé pour apprendre Java : cette fonctionnalité n'est pas disponible.</p>
+      <a th:href="@{/}" aria-label="Back to the ROCKET home page">
+        <img class="brand" th:src="@{/images/clipart1530219.png}" alt="ROCKET logo" width="50" height="44">
+      </a>
     </div>
+  </main>
 </body>
 </html>
-

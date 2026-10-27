@@ -1,55 +1,43 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROCKET</title>
-
-<!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-
-<!-- JavaScript -->
-<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
-<script type="text/javascript" src="/webjars/bootstrap/js/bootstrap.min.js"></script>
-
-<!-- font awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
-<!-- Custom CSS file -->
-<link rel="stylesheet" th:href="@{/styles/cssandjs/style.css}">
-
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="fragments :: head('Users – ROCKET (fictional shop)', 'Administration list of demo users of the fictional ROCKET shop.')"></head>
 <body>
-	<!-- Insert header template -->
+	<div th:replace="fragments :: top"></div>
 	<div th:insert="/header :: header"></div>
 
-	<!-- Main Section -->
-	<div class="container text-center font-rubik" style="color: whitesmoke">
-		<div class="pt-5 pb-2">
-			<h2>List of Users</h2>
-		</div>
+	<main id="main">
+		<section class="section" aria-labelledby="users-title">
+			<div class="container">
+				<h1 id="users-title">List of Users</h1>
+				<div class="table-responsive">
+					<table class="table">
+						<caption class="sr-only">Registered demo users</caption>
+						<thead>
+							<tr>
+								<th scope="col">ID#</th>
+								<th scope="col">Full name</th>
+								<th scope="col">E-mail</th>
+								<th scope="col">Role</th>
+								<th scope="col">Actions</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="user: ${userList}">
+								<td th:text="${user.id}"></td>
+								<td th:text="${user.firstName} + ' ' + ${user.lastName}"></td>
+								<td th:text="${user.email}"></td>
+								<td th:text="${user.role}"></td>
+								<td><a th:href="@{/edit/{id}(id=${user.id})}" th:attr="aria-label='Edit user ' + ${user.id}"><i class="far fa-edit font-size-18 hover" aria-hidden="true"></i></a> &emsp; <form th:unless="${user.admin}" th:action="@{/delete/{id}(id=${user.id})}" method="post" class="d-inline">
+									<button type="submit" class="btn-icon" th:attr="aria-label='Delete user ' + ${user.id}"><i class="far fa-trash-alt font-size-18 hover" aria-hidden="true"></i></button>
+								</form></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</section>
+	</main>
 
-		<div>
-			<table class="table" style="color: whitesmoke">
-				<thead class="text-white-50 font-size-18">
-					<tr>
-						<th>ID#</th>
-						<th>Full name</th>
-						<th>E-mail</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="user: ${userList}">
-						<td th:text="${user.id}" />
-						<td th:text="${user.firstName} + ' ' + ${user.lastName}" />
-						<td th:text="${user.email}" />
-						<td><a th:href="@{/edit/{id}(id=${user.id})}"><i class="far fa-edit text-warning font-size-18 hover"></i></a> &emsp; <a th:href="@{/delete/{id}(id=${user.id})}"><i
-								class="far fa-trash-alt text-danger font-size-18 hover"></i></a></td>
-					</tr>
-				</tbody>
-			</table>
-		</div>
-	</div>
+	<div th:replace="fragments :: footer"></div>
 </body>
 </html>
