@@ -1,64 +1,45 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROCKET</title>
-
-<!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-
-<!-- font awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
-<!-- Custom CSS file -->
-<link rel="stylesheet" th:href="@{/styles/cssandjs/style.css}">
-
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="fragments :: head('Update user – ROCKET (fictional shop)', 'Edit a demo user account of the fictional ROCKET shop.')"></head>
 <body>
-	<!-- Insert header template -->
+	<div th:replace="fragments :: top"></div>
 	<div th:insert="/header :: header"></div>
 
-	<!-- Main Section -->
-	<div class="container font-baloo py-5" style="color: whitesmoke">
-		<div class="text-center p-2">
-			<h2>User Update</h2>
-		</div>
-		<form th:action="@{/edit/{id}(id=${selectedUser.id})}" th:object="${selectedUser}" class="" method="post" style="max-width: 600px; margin: 0 auto;">
-			<div>
-				<div class="form-group row border-top pt-3">
-					<label class="col-3 col-form-label">E-mail: </label>
-					<div class="col-9">
-						<input type="email" th:field="*{email}" class="form-control" required />
-					</div>
-				</div>
-
+	<main id="main">
+		<section class="section" aria-labelledby="upd-title">
+			<div class="container">
+				<h1 id="upd-title">User Update</h1>
+				<form th:action="@{/edit/{id}(id=${selectedUser.id})}" th:object="${selectedUser}" method="post" style="max-width: 600px">
 				<div class="form-group row">
-					<label class="col-3 col-form-label">Password: </label>
-					<div class="col-9">
-						<input type="password" th:field="*{password}" class="form-control" required maxlength="30" />
+					<label for="email" class="col-sm-3 col-form-label">E-mail</label>
+					<div class="col-sm-9">
+						<input type="email" th:field="*{email}" class="form-control" required maxlength="45" autocomplete="email" />
 					</div>
 				</div>
-
 				<div class="form-group row">
-					<label class="col-3 col-form-label">First Name: </label>
-					<div class="col-9">
-						<input type="text" th:field="*{firstName}" class="form-control" required maxlength="30" />
+					<label for="password" class="col-sm-3 col-form-label">Password</label>
+					<div class="col-sm-9">
+						<input type="password" th:field="*{password}" class="form-control" required minlength="8" maxlength="30" autocomplete="new-password" />
 					</div>
 				</div>
-
-				<div class="form-group row border-bottom pb-3">
-					<label class="col-3 col-form-label">Last Name: </label>
-					<div class="col-9">
-						<input type="text" th:field="*{lastName}" class="form-control" required maxlength="30" />
+				<div class="form-group row">
+					<label for="firstName" class="col-sm-3 col-form-label">First Name</label>
+					<div class="col-sm-9">
+						<input type="text" th:field="*{firstName}" class="form-control" required maxlength="30" autocomplete="given-name" />
 					</div>
 				</div>
-
-				<div class="float-right">
-					<button type="submit" class="btn btn-sm btn-outline-warning font-weight-bold">UPDATE</button>
+				<div class="form-group row">
+					<label for="lastName" class="col-sm-3 col-form-label">Last Name</label>
+					<div class="col-sm-9">
+						<input type="text" th:field="*{lastName}" class="form-control" required maxlength="30" autocomplete="family-name" />
+					</div>
 				</div>
+				<button type="submit" class="btn btn-primary">UPDATE</button>
+				</form>
 			</div>
-		</form>
-	</div>
+		</section>
+	</main>
+
+	<div th:replace="fragments :: footer"></div>
 </body>
 </html>

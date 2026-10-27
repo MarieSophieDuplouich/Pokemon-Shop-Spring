@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+
+<!-- ===== HEAD commun : meta, SEO, favicon, CSS ===== -->
+<head th:fragment="head(title, description)"
+	th:with="base=${#request.scheme + '://' + #request.serverName + ((#request.serverPort == 80 or #request.serverPort == 443) ? '' : ':' + #request.serverPort)}">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title th:text="${title}">ROCKET</title>
+<meta name="description" th:content="${description}" content="Fictional Pokémon shop, a Java learning project.">
+
+<!-- Réseaux sociaux -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="ROCKET (site fictif)">
+<meta property="og:title" th:content="${title}" content="ROCKET">
+<meta property="og:description" th:content="${description}" content="Fictional Pokémon shop, a Java learning project.">
+<meta property="og:image" th:content="${base + '/images/og-image.png'}" content="/images/og-image.png">
+<meta property="og:image:alt" content="Logo ROCKET et mention : site fictif, projet d'apprentissage Java">
+<meta name="twitter:card" content="summary_large_image">
+
+<!-- Favicon -->
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" th:href="@{/images/favicon-32.png}">
+<link rel="apple-touch-icon" th:href="@{/images/apple-touch-icon.png}">
+
+<!-- Bootstrap (copie locale via WebJars : aucune requête vers un CDN) -->
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
+
+<!-- Font Awesome : seule ressource tierce restante (cdnjs / Cloudflare), listée dans la politique cookies -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+<link rel="stylesheet" th:href="@{/styles/cssandjs/style.css}">
+</head>
+
+<body>
+
+<!-- ===== Haut de page : lien d'évitement, mention "site fictif", bandeau cookies ===== -->
+<div th:fragment="top">
+	<a class="skip-link" href="#main" lang="fr">Aller au contenu principal</a>
+
+	<div class="demo-notice" role="note" lang="fr">
+		<p>
+			<strong>Site fictif.</strong> ROCKET est un projet d'apprentissage de Java (portfolio) : aucun produit n'est réellement vendu et aucune commande n'est possible.
+			N'utilisez pas de vraies données personnelles. <a th:href="@{/mentions-legales}">En savoir plus</a>
+			<span lang="en">— Fictional demo site: nothing is actually sold.</span>
+		</p>
+	</div>
+
+	<!-- Bandeau de consentement : "Refuser" et "Accepter" ont le même niveau, la même taille, le même style -->
+	<section id="consent" class="consent" role="region" aria-label="Cookies et traceurs" lang="fr" hidden>
+		<p>
+			Ce site n'utilise aujourd'hui que le cookie technique nécessaire à la connexion et à la sécurité des formulaires. Aucun cookie de mesure d'audience ni de publicité n'est déposé.
+			Votre choix est mémorisé 6 mois dans votre navigateur ; la poursuite de la navigation ne vaut pas consentement.
+			<a th:href="@{/cookies}">Politique cookies</a>
+		</p>
+		<div class="consent-actions">
+			<button type="button" class="btn-consent" data-consent="refused">Tout refuser</button>
+			<button type="button" class="btn-consent" data-consent="accepted">Tout accepter</button>
+		</div>
+	</section>
+</div>
+
+<!-- ===== Pied de page + scripts ===== -->
+<footer th:fragment="footer" class="site-footer" lang="fr">
+	<div class="container">
+		<nav aria-label="Informations légales">
+			<ul>
+				<li><a th:href="@{/mentions-legales}">Mentions légales</a></li>
+				<li><a th:href="@{/confidentialite}">Politique de confidentialité</a></li>
+				<li><a th:href="@{/cgu}">Conditions d'utilisation</a></li>
+				<li><a th:href="@{/cookies}">Politique cookies</a></li>
+				<li><button type="button" class="link" data-consent-open>Gérer mes cookies</button></li>
+			</ul>
+		</nav>
+		<p>Site fictif créé par Marie-Sophie Duplouich pour découvrir Java et Spring Boot, inspiré du projet de <a href="https://github.com/wontaekoh/Pokemon-Shop-Spring">wontaekoh</a>, que je remercie. Aucune vente réelle.</p>
+		<p>Pokémon est une marque de Nintendo, Creatures Inc. et GAME FREAK inc. Ce site n'est ni affilié ni approuvé par ces sociétés.</p>
+	</div>
+	<script th:src="@{/webjars/jquery/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
+	<script th:src="@{/styles/cssandjs/consent.js}"></script>
+</footer>
+
+</body>
+</html>

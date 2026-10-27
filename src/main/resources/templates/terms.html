@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
+<head th:replace="fragments :: head('Conditions d’utilisation – ROCKET (site fictif)', 'Conditions générales d’utilisation du site fictif ROCKET : nature du site, compte de démonstration, absence de vente, droit de rétractation de 14 jours à titre d’information.')"></head>
+<body>
+	<div th:replace="fragments :: top"></div>
+	<div th:insert="/header :: header"></div>
+
+	<main id="main">
+		<section class="section">
+			<div class="container legal">
+				<h1>Conditions d'utilisation</h1>
+				<p>Dernière mise à jour : 27 octobre 2026.</p>
+				<p><strong>Ce site est fictif.</strong> ROCKET est un projet d'apprentissage de Java et de Spring Boot réalisé pour un portfolio. Il ne vend rien, n'encaisse aucun paiement et ne livre aucun produit.</p>
+			</div>
+		</section>
+
+		<section class="section section-alt">
+			<div class="container legal">
+				<h2 id="objet">Objet</h2>
+				<p>Ces conditions encadrent la consultation du site ROCKET, une boutique de Pokémon fictive créée pour apprendre Java. En l'utilisant, vous acceptez qu'il s'agit d'une démonstration technique.</p>
+				<h2 id="compte">Compte de démonstration</h2>
+				<p>Vous pouvez créer un compte pour tester l'inscription et la connexion. Utilisez des données inventées. Le compte peut être supprimé ou réinitialisé à tout moment, sans préavis. Vous ne devez pas tenter de perturber le site ni d'accéder aux comptes d'autrui.</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container legal">
+				<h2 id="vente">Aucune vente réelle</h2>
+				<p>Les prix, notes, stocks et boutons « Add to Cart » ou « Proceed to Buy » sont purement illustratifs. Aucune commande ne peut être passée, aucun paiement n'est demandé et aucun contrat de vente ne peut être conclu via ce site.</p>
+			</div>
+		</section>
+
+		<section class="section section-alt">
+			<div class="container legal">
+				<h2 id="retractation">Droit de rétractation (information)</h2>
+				<p>Cette section est informative : elle indique ce qui s'appliquerait si cette boutique vendait réellement à des consommateurs. <strong>Ici, rien n'est vendu, donc aucun délai ne court.</strong></p>
+				<p>Pour un contrat de vente conclu à distance, le consommateur dispose de <strong>14 jours</strong> pour se rétracter sans avoir à se justifier (article L221-18 du Code de la consommation). Pour un achat de bien, ce délai court à compter de la réception du bien. Certaines exceptions existent (article L221-28).</p>
+				<p>Depuis le 19 juin 2026, un vendeur en ligne doit en outre proposer une fonctionnalité gratuite permettant d'exercer ce droit directement sur son site (articles L221-21 et D221-5 du même code).</p>
+				<h2 id="garanties">Garanties légales (information)</h2>
+				<p>Pour une vente réelle, la garantie légale de conformité et la garantie des vices cachés s'appliqueraient. Elles ne sont pas applicables ici faute de vente.</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container legal">
+				<h2 id="pi">Propriété intellectuelle</h2>
+				<p>Les marques et illustrations Pokémon appartiennent à leurs titulaires ; voir les <a th:href="@{/mentions-legales#credits}">crédits</a>.</p>
+				<h2 id="responsabilite">Responsabilité et droit applicable</h2>
+				<p>Le site est fourni « en l'état », sans garantie de disponibilité, et peut être interrompu ou modifié à tout moment. Ces conditions sont soumises au droit français.</p>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>

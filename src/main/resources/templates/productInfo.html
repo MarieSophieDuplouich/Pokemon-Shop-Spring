@@ -1,159 +1,89 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ROCKET</title>
-
-<!-- Bootstrap -->
-<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css" />
-
-<!-- font awesome icons -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
-
-<!-- Custom CSS file -->
-<link rel="stylesheet" th:href="@{/styles/cssandjs/style.css}">
-
-</head>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="fragments :: head(${selectedProd.title} + ' – ROCKET (fictional shop)', 'Product page of a fictional shop (Java learning project). Nothing is actually sold.')"></head>
 <body>
-	<!-- Insert header template -->
+	<div th:replace="fragments :: top"></div>
 	<div th:insert="/header :: header"></div>
 
-	<!-- Main Section -->
-	<!-- main -->
-	<main id="main-site pb-5">
-		<section id="product" class="py-3">
+	<main id="main">
+		<section class="section" aria-labelledby="product-title">
 			<div class="container">
-				<div class="row" th:object="${selectedProd}" method="POST">
+				<div class="row">
 					<!-- Product Image -->
-					<div class="product-image col-sm-6 p-5" align="center">
+					<div class="product-image col-md-6 p-md-5">
 						<div class="col-sm-8 p-0">
-							<img th:src="@{/images/{image}(image=${selectedProd.imgAddr})}" alt="product" class="img-fluid">
+							<img th:src="@{/images/{image}(image=${selectedProd.imgAddr})}" th:alt="${selectedProd.title} + ', Pokémon illustration'" width="240" height="421" class="img-fluid">
 							<div class="form-row pt-4 font-size-16 font-baloo">
 								<div class="col">
-									<button type="submit" class="btn btn-danger form-control">Proceed to Buy</button>
+									<button type="button" class="btn btn-danger form-control">Proceed to Buy (demo)</button>
 								</div>
 								<div class="col">
-									<button type="submit" class="btn btn-warning form-control">Add to Cart</button>
+									<button type="button" class="btn btn-warning form-control">Add to Cart (demo)</button>
 								</div>
 							</div>
 						</div>
 					</div>
 
 					<!-- Product Information -->
-					<div class="product-info col-sm-6 pt-5 pb-5" style="color: whitesmoke">
-						<h4 class="font-baloo">
-							<b>[[${selectedProd.title}]]</b>
-						</h4>
-						<h6>Type: [[${selectedProd.type}]]</h6>
-						<div class="d-flex">
-							<div class="rating text-warning font-size-14">[[${selectedProd.rating}]] / 5.0</div>
-							<a href="maintenance.php" class="px-2 font-rubik font-size-14 text-white-50">10 ratings | 3+ answered questions</a>
-						</div>
-						<hr>
+					<div class="product-info col-md-6 pt-5 pb-5">
+						<h1 id="product-title" class="font-baloo">[[${selectedProd.title}]]</h1>
+						<p>Type: [[${selectedProd.type}]]</p>
+						<p class="rating font-size-14"><span class="sr-only">Rating: </span>[[${selectedProd.rating}]] / 5.0</p>
 
-						<!--- product price -->
-						<table class="my-3" style="color: whitesmoke">
+						<table class="my-3">
+							<caption class="sr-only">Prices</caption>
 							<tr class="font-baloo font-size-16">
-								<td>M.S.R.P:</td>
-								<td class="pl-3 text-danger"><strike>$[[${selectedProd.MSRP}]]</strike></td>
+								<th scope="row">M.S.R.P:</th>
+								<td class="pl-3"><del>$[[${selectedProd.MSRP}]]</del></td>
 							</tr>
 							<tr class="font-baloo font-size-16">
-								<td>Deal Price:</td>
+								<th scope="row">Deal Price:</th>
 								<td class="pl-3 font-size-20"><span>$[[${selectedProd.price}]]</span></td>
 							</tr>
 						</table>
 
-						<!-- policy -->
-						<div id="policy" style="color: whitesmoke">
-							<div class="d-flex">
-								<div class="return text-center mr-5">
-									<div class="font-size-20 my-2 color-second">
-										<span class="fas fa-retweet border p-3 rounded-pill"></span>
-									</div>
-									<a href="maintenance.php" class="font-rubik font-size-12 text-white-50">10 Days <br> Replacement
-									</a>
-								</div>
-								<div class="return text-center mr-5">
-									<div class="font-size-20 my-2 color-second">
-										<span class="fas fa-truck border p-3 rounded-pill"></span>
-									</div>
-									<a href="maintenance.php" class="font-rubik font-size-12 text-white-50">Rocket <br>Deliverd
-									</a>
-								</div>
-								<div class="return text-center mr-5">
-									<div class="font-size-20 my-2 color-second">
-										<span class="fas fa-check-double border p-3 rounded-pill"></span>
-									</div>
-									<a href="maintenance.php" class="font-rubik font-size-12 text-white-50">1 Year <br>Warranty
-									</a>
-								</div>
-							</div>
-						</div>
-						<hr>
+						<ul id="policy" class="list-unstyled d-flex flex-wrap">
+							<li class="mr-5"><a th:href="@{/cgu#retractation}"><i class="fas fa-retweet" aria-hidden="true"></i> 14-day withdrawal right</a></li>
+							<li class="mr-5"><a th:href="@{/cgu}"><i class="fas fa-truck" aria-hidden="true"></i> Delivery (fictional)</a></li>
+							<li class="mr-5"><a th:href="@{/cgu#garanties}"><i class="fas fa-check-double" aria-hidden="true"></i> Legal guarantees</a></li>
+						</ul>
 
-						<!-- order-details -->
-						<div id="order-details" class="font-rubik d-flex flex-column text-light">
-							<small>Arrives within 7 days</small> <small>Sold by <a href="landing_page.php" class="text-white-50"> Rocket </a>( [[${selectedProd.rating}]] out of 5 | 100 ratings )
-							</small> <small><i class="fas fa-map-marker-alt color-primary"></i>&nbsp;&nbsp;Deliver to - Algonquin Woodrooffe</small>
+						<div id="order-details" class="font-rubik d-flex flex-column">
+							<small>Fictional shop: no order can be placed and nothing is delivered.</small>
 						</div>
 
-						<!-- Gender selection -->
-						<div class="row" style="color: whitesmoke">
-							<div class="col-6">
-								<div class="color my-3"></div>
-								<div class="d-flex justify-content-between">
-									<h6 class="font-baloo">Gender:</h6>
-									<div class="d-flex justify-content-between w-75">
-										<div class="font-rubik border p-2">
-											<button class="btn p-0 font-size-14 text-white-50">Male</button>
-										</div>
-										<div class="font-rubik border p-2">
-											<button class="btn p-0 font-size-14 text-white-50">Female</button>
-										</div>
-										<div class="font-rubik border p-2">
-											<button class="btn p-0 font-size-14 text-white-50">Random</button>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<!-- product qty section -->
-						<div class="my-3" style="color: whitesmoke">
-							<div class="qty d-flex">
-								<h6 class="font-baloo">Quantity:</h6>
+						<div class="my-3">
+							<div class="qty d-flex align-items-center">
+								<label for="qtySel" class="font-baloo mb-0">Quantity:</label>
 								<div class="px-4 d-flex font-rale">
-									<input type="button" id="minus" value="-" class="qty_input border px-2 w-5 bg-light text-dark">
-									</button>
-									<input type="text" id="qtySel" class="qty_input border px-2 w-50 bg-light text-dark" disabled value="1"> <input type="button" id="plus" value="+"
-										class="qty_input border px-2 w-5 bg-light text-dark">
-									</button>
+									<input type="text" id="qtySel" class="qty_input px-2 w-50" disabled value="1">
 								</div>
 							</div>
 						</div>
 
-						<!-- Real time price -->
-						<div class="my-3" style="color: whitesmoke">
-							<div class="qty d-flex">
-								<h6 class="font-baloo my-2">Total Price:</h6>
-								<div class="px-4 d-flex font-rubik text-warning font-size-22">$[[${selectedProd.price}]]</div>
-							</div>
-						</div>
+						<p class="font-baloo">Total Price: <strong>$[[${selectedProd.price}]]</strong></p>
 					</div>
-
-					<!-- Product Description -->
-					<div class="product-desc py-5">
-						<div class="col-12" style="color: whitesmoke">
-							<h5 class="font-rubik text-size-20">Product Description:</h5>
-							<hr>
-							<p class="font-rale font-size-16 border-top py-3">[[${selectedProd.pkmDesc}]]
-						</div>
-					</div>
-
 				</div>
 			</div>
 		</section>
+
+		<!-- Description (fond #f5f5f7) -->
+		<section class="section section-alt" aria-labelledby="desc-title">
+			<div class="container">
+				<h2 id="desc-title" class="font-rubik">Product Description</h2>
+				<p class="font-rale font-size-16">[[${selectedProd.pkmDesc}]]</p>
+				<p class="font-size-14">Source: Bulbapedia, see the <a th:href="@{/mentions-legales#credits}">credits</a>.</p>
+			</div>
+		</section>
+
+		<!-- Retour au catalogue (fond blanc : on termine sur blanc avant le pied de page) -->
+		<section class="section">
+			<div class="container">
+				<a th:href="@{/product-list}" class="btn btn-primary">Back to all Pokemons</a>
+			</div>
+		</section>
 	</main>
+
+	<div th:replace="fragments :: footer"></div>
 </body>
 </html>

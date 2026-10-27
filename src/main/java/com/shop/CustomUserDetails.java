@@ -1,8 +1,10 @@
 package com.shop;
 
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
  
 public class CustomUserDetails implements UserDetails {
@@ -15,7 +17,8 @@ public class CustomUserDetails implements UserDetails {
  
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        String role = user.getRole() == null ? "USER" : user.getRole();
+        return List.of(new SimpleGrantedAuthority("ROLE_" + role));
     }
  
     @Override

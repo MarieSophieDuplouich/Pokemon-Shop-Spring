@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<head th:replace="fragments :: head('Page not found – ROCKET (fictional shop)', 'Error page of ROCKET, a fictional shop built to learn Java.')"></head>
+<body>
+	<div th:replace="fragments :: top"></div>
+	<div th:insert="/header :: header"></div>
+
+	<main id="main">
+		<section class="section" aria-labelledby="err-title">
+			<div class="container">
+				<h1 id="err-title">Page not found</h1>
+				<p>This page does not exist or has moved. Page introuvable.</p>
+				<a th:href="@{/}" class="btn btn-primary">Back to home</a>
+				<a th:href="@{/product-list}" class="btn btn-primary">See all Pokemons</a>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>

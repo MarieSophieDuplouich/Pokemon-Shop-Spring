@@ -27,6 +27,21 @@ public class User {
 	@Column(nullable = false, length = 64)
 	private String password;
 
+	// "USER" (par défaut) ou "ADMIN". Jamais modifiable depuis un formulaire.
+	@Column(nullable = false, length = 20, columnDefinition = "varchar(20) default 'USER'")
+	private String role = "USER";
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
+	public boolean isAdmin() {
+		return "ADMIN".equals(role);
+	}
 	
 	public int getId() {
 		return id;

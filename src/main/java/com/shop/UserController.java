@@ -7,6 +7,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +18,12 @@ public class UserController {
 	
 	@Autowired
 	private UserRepository repo;
+	
+	// Le rôle ne peut jamais être posté depuis un formulaire (évite de se promouvoir admin)
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.setDisallowedFields("role", "id");
+	}
 	
 	// Home Page
 	@GetMapping("")
@@ -37,6 +45,7 @@ public class UserController {
 		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
 		String encodedPassword = encoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
+		user.setRole("USER");
 		
 		repo.save(user);
 		
@@ -67,12 +76,17 @@ public class UserController {
 	@PostMapping("/edit/{id}")
 	public String updateUser(@PathVariable("id") int id, User user, 
 	  BindingResult result, Model model) {
-		BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-		String encodedPassword = encoder.encode(user.getPassword());
-		user.setPassword(encodedPassword);
+		User existing = repo.findById(id)
+				.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+		
+		// Le formulaire renvoie le hash déjà enregistré s'il n'est pas modifié : on ne le re-hache pas
+		if (!user.getPassword().equals(existing.getPassword())) {
+			user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
+		}
+		user.setId(id);
+		user.setRole(existing.getRole());
 		
 	    if (result.hasErrors()) {
-	        user.setId(id);
 	        return "updateUser";
 	    }
 	        
@@ -81,10 +95,14 @@ public class UserController {
 	}
 	
 	// Delete User	
-	@GetMapping("/delete/{id}")
+	@PostMapping("/delete/{id}")
 	public String deleteUser(@PathVariable("id") int id, Model model) {
 	    User user = repo.findById(id)
 	    		.orElseThrow(() -> new IllegalArgumentException("Invalid user Id:" + id));
+	    // Le compte administrateur ne se supprime pas depuis l'interface
+	    if (user.isAdmin()) {
+	    	return "redirect:/list";
+	    }
 	    repo.delete(user);
 	    
 	    return "redirect:/list";

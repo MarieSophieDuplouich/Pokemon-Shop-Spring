@@ -1,0 +1,13 @@
+User-agent: *
+Disallow: /list
+Disallow: /edit/
+Disallow: /delete/
+Disallow: /edit-product/
+Disallow: /delete-product/
+Disallow: /login
+Disallow: /register-success
+Disallow: /maintenance
+Disallow: /search-result
+
+# À COMPLÉTER : remplacez par l'adresse publique réelle du site
+Sitemap: https://VOTRE-DOMAINE.example/sitemap.xml

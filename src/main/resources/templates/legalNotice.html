@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="fr">
+<head th:replace="fragments :: head('Mentions légales – ROCKET (site fictif)', 'Mentions légales du site fictif ROCKET, projet d’apprentissage de Java : éditeur, hébergeur, crédits et propriété intellectuelle.')"></head>
+<body>
+	<div th:replace="fragments :: top"></div>
+	<div th:insert="/header :: header"></div>
+
+	<main id="main">
+		<section class="section">
+			<div class="container legal">
+				<h1>Mentions légales</h1>
+				<p>Dernière mise à jour : 27 octobre 2026.</p>
+				<p><strong>Ce site est fictif.</strong> ROCKET est un projet d'apprentissage de Java et de Spring Boot réalisé pour un portfolio. Il ne vend rien, n'encaisse aucun paiement et ne livre aucun produit.</p>
+			</div>
+		</section>
+
+		<section class="section section-alt">
+			<div class="container legal">
+				<h2 id="editeur">Éditeur du site</h2>
+				<p>Le site est édité à titre personnel et non professionnel, sans but lucratif, par <strong>Marie-Sophie Duplouich</strong>, également responsable de la publication.</p>
+				<p>Contact : <span class="todo">[À COMPLÉTER : adresse e-mail de contact]</span></p>
+				<p>Le site ne comporte ni publicité, ni vente, ni revenu.</p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container legal">
+				<h2 id="hebergeur">Hébergeur</h2>
+				<p><span class="todo">[À COMPLÉTER : nom, adresse et numéro de téléphone de l'hébergeur]</span></p>
+			</div>
+		</section>
+
+		<section class="section section-alt">
+			<div class="container legal">
+				<h2 id="credits">Crédits et propriété intellectuelle</h2>
+				<ul>
+					<li>Projet initial : <a href="https://github.com/wontaekoh/Pokemon-Shop-Spring">Pokemon-Shop-Spring</a>, dépôt GitHub de wontaekoh. Ce site fictif s'en inspire, et je remercie sincèrement son auteur. Le front-end a été retravaillé dans le cadre d'un apprentissage de la programmation orientée objet en Java.</li>
+					<li>Illustrations : <a href="https://shey.tistory.com/category/Wallpapers/%ED%8F%AC%EC%BC%93%EB%AA%AC%EC%8A%A4%ED%84%B0?page=2">shey.tistory.com</a>.</li>
+					<li>Descriptions des Pokémon : <a href="https://bulbapedia.bulbagarden.net/wiki/List_of_Pok%C3%A9mon_by_National_Pok%C3%A9dex_number">Bulbapedia</a>.</li>
+					<li>Bootstrap et Font Awesome pour l'interface.</li>
+				</ul>
+				<p>Pokémon et les noms de personnages associés sont des marques de Nintendo, Creatures Inc. et GAME FREAK inc. Ce site n'est ni affilié, ni sponsorisé, ni approuvé par ces sociétés. Les droits sur les images et textes cités appartiennent à leurs titulaires respectifs ; ils sont utilisés ici dans un but pédagogique et non commercial.</p>
+				<p>Source du logo ROCKET : <span class="todo">[À COMPLÉTER : origine et licence du logo]</span></p>
+			</div>
+		</section>
+
+		<section class="section">
+			<div class="container legal">
+				<h2 id="signalement">Signaler un contenu</h2>
+				<p>Pour demander le retrait d'une image ou d'un texte, ou pour signaler un contenu, écrivez à <span class="todo">[À COMPLÉTER : adresse e-mail de contact]</span>.</p>
+			</div>
+		</section>
+	</main>
+
+	<div th:replace="fragments :: footer"></div>
+</body>
+</html>
